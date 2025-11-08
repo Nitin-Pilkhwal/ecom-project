@@ -1,1 +1,1 @@
-# ecom-project
+# demo-project

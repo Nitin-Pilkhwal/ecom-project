@@ -1,0 +1,2907 @@
+{
+	"info": {
+		"_postman_id": "e8735059-14f6-48f5-a24e-4b1a47bc6d9d",
+		"name": "nitin_ecommerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37231846",
+		"_collection_link": "https://demo-project-3239.postman.co/workspace/Demo-Project~fbf9f8c8-91c8-4303-8622-c2a8707d38fa/collection/37231846-e8735059-14f6-48f5-a24e-4b1a47bc6d9d?action=share&source=collection_link&creator=37231846"
+	},
+	"item": [
+		{
+			"name": "Auth APIs",
+			"item": [
+				{
+					"name": "Register Customer",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "en"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"mohit.ramtaritothenew.com\",\n    \"contact\": \"+9112345678\",\n    \"password\": \"Nitin1234\",\n    \"confirmPassword\": \"Nitin1234\",\n    \"firstName\": \"\",\n    \"lastName\": \"PilkhwalOne\",\n    \"middleName\": \"SIngh\",\n    \"address\": {\n        \"city\": \"City\",\n        \"state\": \"Uttar Pradesh\",\n        \"country\": \"India\",\n        \"addressLine\": \"Tere ghar ke bagal me\",\n        \"zipcode\": 88888,\n        \"label\": \"HOME\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/auth/register/customer",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"register",
+								"customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Seller",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"ramtarimot2@tothenew.com\",\n  \"password\": \"Nitin@1234\",\n  \"confirmPassword\": \"Nitin@1234\",\n  \"firstName\": \"Mohit\",\n  \"lastName\": \"Nitro\",\n  \"middleName\": null,\n    \"gst\": \"22AAAAB0178B1Z2\",\n  \"companyName\": \"Nitin Cortc Pvtt. Ltd.\",\n  \"companyContact\": \"+911234527890\",\n  \"companyAddress\": {\n    \"city\":\"aa\",\n    \"state\":\"aa\",\n    \"country\":\"zz\",\n    \"addressLine\":\"Temporary\",\n    \"zipcode\": 55555,\n    \"label\":\"label\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/auth/register/seller",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"register",
+								"seller"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();",
+									"pm.collectionVariables.set(\"ACCESS_TOKEN\", jsonData.responseData.accessToken);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "nl",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "// Admin\n{\n    \"userName\": \"1nasty.np@gmail.com\",   \n    \"password\": \"Nitin@1234\" \n}\n\n// Seller\n// {\n// \t\"userName\": \"nitin.ecom.seller@gmail.com\",   \n//   \"password\": \"Nitin@1234\" \n// }\n\n// Customer\n// {\n// \t\"userName\": \"mohit.ramtari@tothenew.com\",   \n//   \"password\": \"Nitin@1234\" \n// }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/auth/login",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh API",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{     \n\t\"refreshToken\": \"eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJlY29tbWVyY2UtYXBwIiwic3ViIjoiMW5hc3R5Lm5wQGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwianRpIjoiZmMzMTQ2YzItY2NjZi00MGM4LTgyY2YtZmFmYzlmODc0YjU2IiwiaWF0IjoxNzU3Njc1MTY3LCJleHAiOjE3NTc3NjE1Njd9.XJLqYhi_TXYreeTBNlFysaLEcPtK16CDSs9TeJvjlag\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/auth/refresh",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Logout",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJlY29tbWVyY2UtYXBwIiwic3ViIjoibml0aW4uZWNvbS5zZWxsZXJAZ21haWwuY29tIiwicm9sZXMiOlsiUk9MRV9TRUxMRVIiXSwianRpIjoiZGMyMDkwZWUtZTIyNy00YjY0LWEwYTgtMjQ5YWVkZDQ0NDBmIiwiaWF0IjoxNzU3NjcxMTM5LCJleHAiOjE3NTc2NzIwMzl9.Gd9f20cNPbILcTdZQfXiNulDOkpMikY-cvjqImg1h2k",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/auth/logout",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resend Activation Link",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{     \"email\":\"mohit.ramtari@tothenew.com\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/auth/resend/activation-link",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"resend",
+								"activation-link"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Initiate Forgot Password",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{     \"email\":\"mohit.ramtari@tothenew.com\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/auth/initiate/forgot-password",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"initiate",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"password\": \"Nitin123456789\",\n  \"confirmPassword\": \"Nitin123456789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/auth/reset-password?token=7e582bc4-4629-4b3e-b8e1-314d79de70d3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"auth",
+								"reset-password"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "7e582bc4-4629-4b3e-b8e1-314d79de70d3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Activate Customer",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "",
+								"value": ""
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8090/auth/activate/customer?token=0b42123c-5135-4416-96f7-c021bc3e7938",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"auth",
+								"activate",
+								"customer"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "0b42123c-5135-4416-96f7-c021bc3e7938"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User APIs",
+			"item": [
+				{
+					"name": "Change Password",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"oldPassword\":\"Nitin@1234\",\n    \"password\": \"Nitin@111234\",\n    \"confirmPassword\": \"Nitin@1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/users/change/password?token=b4c0cce1-584e-42d5-9f40-3f2369b386a8",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"change",
+								"password"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "b4c0cce1-584e-42d5-9f40-3f2369b386a8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Address",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"city\": \"one\",\n  \"state\": \"one\",\n  \"zipcode\": \"59555\",\n  \"label\": \"Hello\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/users/change/address/:addressId?=",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"change",
+								"address",
+								":addressId"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": ""
+								}
+							],
+							"variable": [
+								{
+									"key": "addressId",
+									"value": "99d3d09f-29eb-4a64-a370-0a69bc62777a"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Admin APIs",
+			"item": [
+				{
+					"name": "Category",
+					"item": [
+						{
+							"name": "Create Metadata Field",
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/11.4.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\":\"Type\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/admin/category/add/metadata/field",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"admin",
+										"category",
+										"add",
+										"metadata",
+										"field"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All MetdataFields",
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": ""
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/admin/category/getAll/metadata/field?sort=name,asc",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"admin",
+										"category",
+										"getAll",
+										"metadata",
+										"field"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "size",
+											"value": "10",
+											"disabled": true
+										},
+										{
+											"key": "name",
+											"value": "m",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "name,asc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Category",
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/11.4.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\":\"Milk Products\",\n\t\"parentCategoryId\": \"19aa6f68-8c2f-4bb7-9e64-de2b03147646\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/admin/category/add/category",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"admin",
+										"category",
+										"add",
+										"category"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Category",
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/11.4.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\":\"Gaming Laptops\",\n\t\"id\":\"4c11b5bb-e30a-49b1-ae60-758ba506566c\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8090/admin/category/change/category",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8090",
+									"path": [
+										"admin",
+										"category",
+										"change",
+										"category"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Category",
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": ""
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/admin/category/get/category/:categoryId",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"admin",
+										"category",
+										"get",
+										"category",
+										":categoryId"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "categoryId",
+											"value": "985fb281-d6af-4047-9606-4c65e996042f"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Category",
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": ""
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/admin/category/get/all/categories?size=40",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"admin",
+										"category",
+										"get",
+										"all",
+										"categories"
+									],
+									"query": [
+										{
+											"key": "size",
+											"value": "40"
+										},
+										{
+											"key": "page",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "parentId",
+											"value": "0532bc1e-7ff0-4133-8588-ca8c04fed705",
+											"disabled": true
+										},
+										{
+											"key": "leaf",
+											"value": "true",
+											"disabled": true
+										},
+										{
+											"key": "name",
+											"value": "laptop",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "name,desc",
+											"disabled": true
+										},
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Metadata Field to a category",
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/11.4.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"categoryId\": \"985fb281-d6af-4047-9606-4c65e996042f\",\n  \"fields\": [\n    {\n      \"fieldId\": \"69bd896e-cef1-4da4-939c-ed254a2afc9f\",\n      \"values\": [\n        \"4000Mah\",\n        \"4500Mah\",\n        \"5000Mah\"\n      ]\n    },\n    {\n      \"fieldId\": \"aa51cabe-36cb-400f-8224-2f78a8c3f96f\",\n      \"values\": [\n        \"4GB\",\n        \"6GB\",\n        \"8GB\",\n        \"16GB\",\n        \"32GB\",\n        \"64GB\"\n      ]\n    },\n    {\n      \"fieldId\": \"1077a4e2-f601-4234-9235-96828e13b2b9\",\n      \"values\": [\n        \"128GB\",\n        \"256GB\",\n        \"512GB\",\n        \"1TB\"\n      ]\n    },\n    {\n      \"fieldId\": \"132c96af-5ec5-4922-8c00-57dce14ed6c8\",\n      \"values\": [\n        \"Red\",\n        \"Yellow\",\n        \"Green\",\n        \"Purple\",\n        \"Violet\"\n      ]\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/admin/category/add/metadata/field/value",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"admin",
+										"category",
+										"add",
+										"metadata",
+										"field",
+										"value"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Metadata Field to a category",
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/11.4.0"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "de",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"categoryId\": \"985fb281-d6af-4047-9606-4c65e996042f\",\n  \"fields\": \n    {\n      \"fieldId\": \"132c96af-5ec5-4922-8c00-57dce14ed6c8\",\n      \"values\": [\n\t\t\t\t\"White\",\n                \"Black\"\n      ]\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/admin/category/change/metadata/field/value",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"admin",
+										"category",
+										"change",
+										"metadata",
+										"field",
+										"value"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Product",
+					"item": [
+						{
+							"name": "Activate Product",
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "User-Agent",
+										"value": "insomnia/11.4.0"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "fr",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/admin/products/activate/Product/:productId",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"admin",
+										"products",
+										"activate",
+										"Product",
+										":productId"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "productId",
+											"value": "067beb7c-5c21-466c-a4eb-2265a35c42c2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Product",
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "User-Agent",
+										"value": "insomnia/11.4.0"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "fr",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/admin/products/get/product/:productId",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"admin",
+										"products",
+										"get",
+										"product",
+										":productId"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "productId",
+											"value": "067beb7c-5c21-466c-a4eb-2265a35c4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Deactivate Product",
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "User-Agent",
+										"value": "insomnia/11.4.0"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/admin/products/deactivate/Product/:productId",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"admin",
+										"products",
+										"deactivate",
+										"Product",
+										":productId"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "productId",
+											"value": "067beb7c-5c21-466c-a4eb-2265a35c42c2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Products",
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "User-Agent",
+										"value": "insomnia/11.4.0"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/admin/products/get/all/products?size=10&page=0&sort=brand,desc&brand=Zebronics",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"admin",
+										"products",
+										"get",
+										"all",
+										"products"
+									],
+									"query": [
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "sort",
+											"value": "brand,desc"
+										},
+										{
+											"key": "name",
+											"value": "jeans 1",
+											"disabled": true
+										},
+										{
+											"key": "brand",
+											"value": "Zebronics"
+										},
+										{
+											"key": "categoryId",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "isCancellable",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "isReturnable",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "sellerId",
+											"value": "d62b7bc3-2626-48dc-b272-751a0ae5103c",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get All Customers",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": ""
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/admin/getAll/customers?size=10&page=0&sort=firstName,desc",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"getAll",
+								"customers"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "10"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "sort",
+									"value": "firstName,desc"
+								},
+								{
+									"key": "email",
+									"value": "7",
+									"disabled": true
+								},
+								{
+									"key": "firstName",
+									"value": "N",
+									"disabled": true
+								},
+								{
+									"key": "lastName",
+									"value": "   ",
+									"disabled": true
+								},
+								{
+									"key": "isActive",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Activate User",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.4.0"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/admin/activate/user/:id",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"activate",
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "e70b9ed7-1b43-4567-9830-dfaf83a6fa13"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deactivate User",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.4.0"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/admin/deactivate/user/:id?=",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"deactivate",
+								"user",
+								":id"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": ""
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "e70b9ed7-1b43-4567-9830-dfaf83a6fa13"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Sellers",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "en"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/admin/getAll/sellers?size=10&page=0&sort=email,desc&countryCode=%2B91",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"getAll",
+								"sellers"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "10"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "email",
+									"value": "7",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "email,desc"
+								},
+								{
+									"key": "firstName",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "lastName",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "companyName",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "gst",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "isActive",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "countryCode",
+									"value": "%2B91"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Notification Template",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.4.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"type\": \"PRODUCT_STATUS_UPDATE\",\n  \"template\": \"<html><body style='font-family: Arial, sans-serif; padding: 20px; text-align: center;'><h2 style='color: {5};'>Product Status Update</h2><p>Hello {1},</p><p>Your product <strong>{2}</strong> has been <strong style='color:{3};'>{4}</strong> by the admin.</p><p style='margin-top: 15px;'>Thank you for using our platform.</p><p style='margin-top: 20px; color: #7f8c8d;'></p></body></html>\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/admin/add/notification/template",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"add",
+								"notification",
+								"template"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Notification Template",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJlY29tbWVyY2UtYXBwIiwic3ViIjoiMW5hc3R5Lm5wQGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwianRpIjoiY2RiMjdiZGYtNjg5OC00MGVmLThkNzYtNzA4ZWE2OTZmZGM5IiwiaWF0IjoxNzU3NDMxOTU1LCJleHAiOjE3NTc0MzI4NTV9.VcFT8EROKuC0AE4e2uWqhConCFVPDCzsYhs9be1-HB0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.4.0"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/admin/get/all/notification/template?notificationTemplateType=PRODUCT_STATUS_UPDATE",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"get",
+								"all",
+								"notification",
+								"template"
+							],
+							"query": [
+								{
+									"key": "notificationTemplateType",
+									"value": "PRODUCT_STATUS_UPDATE"
+								},
+								{
+									"key": "isDeleted",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Customer APIs",
+			"item": [
+				{
+					"name": "Category",
+					"item": [
+						{
+							"name": "Get Categories",
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": ""
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/api/customers/category/get/categories?sort=name,asc&categoryId=4c11b5bb-e30a-49b1-ae60-758ba506566c&size=40",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"customers",
+										"category",
+										"get",
+										"categories"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": "name,asc"
+										},
+										{
+											"key": "categoryId",
+											"value": "4c11b5bb-e30a-49b1-ae60-758ba506566c"
+										},
+										{
+											"key": "size",
+											"value": "40"
+										},
+										{
+											"key": "page",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Filter Categories",
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": ""
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/api/customers/category/get/filtering/details/:categoryId",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"customers",
+										"category",
+										"get",
+										"filtering",
+										"details",
+										":categoryId"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "categoryId",
+											"value": "0532bc1e-7ff0-4133-8588-ca8c04fed705"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Product",
+					"item": [
+						{
+							"name": "Get Product",
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "User-Agent",
+										"value": "insomnia/11.4.0"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/api/customers/products/get/product/:productId?=",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"customers",
+										"products",
+										"get",
+										"product",
+										":productId"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": ""
+										}
+									],
+									"variable": [
+										{
+											"key": "productId",
+											"value": "5ca14a9c-d678-41d3-9d3b-5f2277bd4b1a"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Products",
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "User-Agent",
+										"value": "insomnia/11.4.0"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/api/customers/products/get/all/products?categoryId=facbf40d-c957-4976-9b31-d62f3b45ed04&size=10&page=0&sort=brand,desc",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"customers",
+										"products",
+										"get",
+										"all",
+										"products"
+									],
+									"query": [
+										{
+											"key": "categoryId",
+											"value": "facbf40d-c957-4976-9b31-d62f3b45ed04"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "sort",
+											"value": "brand,desc"
+										},
+										{
+											"key": "name",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "brand",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "isCancellable",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "isReturnable",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Similar Products",
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "User-Agent",
+										"value": "insomnia/11.4.0"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/api/customers/products/get/similar/products/:productId?=",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"customers",
+										"products",
+										"get",
+										"similar",
+										"products",
+										":productId"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": ""
+										}
+									],
+									"variable": [
+										{
+											"key": "productId",
+											"value": "52a6948d-ac45-4820-a970-7c32c197f068"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get Profile Customer",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.4.0"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/api/customers/get/profile",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								"get",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Address",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"city\": \"Vice City\",\n  \"state\": \"Illegal state\",\n  \"country\": \"New Zealandzz\",\n  \"addressLine\": \"Tere ghar ke bagal me-1\",\n  \"zipcode\": \"77788\",\n  \"label\": \"PG\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/customers/add/address?=",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"customers",
+								"add",
+								"address"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Address",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8090/api/customers/remove/address/:addressId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"customers",
+								"remove",
+								"address",
+								":addressId"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "addressId",
+									"value": "99d3d09f-29eb-4a64-a370-0a69bc62777a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Addresses",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": ""
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/api/customers/get/addresses",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								"get",
+								"addresses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Customer Profile",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.4.0"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"contact\": \"+911234567890\",\n  \"firstName\": \"Hello\",\n  \"lastName\": \"Hey\",\n  \"middleName\": \"null\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/customers/update/profile",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								"update",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Seller APIs",
+			"item": [
+				{
+					"name": "Category",
+					"item": [
+						{
+							"name": "Seller Get All Categories ",
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "User-Agent",
+										"value": "insomnia/11.4.0"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/api/sellers/category/get/all/categories?page=0&size=50&sort=name,desc",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"sellers",
+										"category",
+										"get",
+										"all",
+										"categories"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "50"
+										},
+										{
+											"key": "sort",
+											"value": "name,desc"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Product",
+					"item": [
+						{
+							"name": "Add Product",
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/11.4.0"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Mouse 111 2\",\n  \"description\": \"Very good mouse\",\n  \"brand\": \"Zebronics\",\n  \"categoryId\": \"0548e967-9049-4a00-97c5-6991697f386b\",\n  \"isCancellable\": true,\n  \"isReturnable\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/sellers/products/add/product",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"sellers",
+										"products",
+										"add",
+										"product"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Product",
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "User-Agent",
+										"value": "insomnia/11.4.0"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/api/sellers/products/get/product/:productId",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"sellers",
+										"products",
+										"get",
+										"product",
+										":productId"
+									],
+									"variable": [
+										{
+											"key": "productId",
+											"value": "7bc967b8-c2c7-4a60-a639-0d367bbb321b"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Products",
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "User-Agent",
+										"value": "insomnia/11.4.0"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/api/sellers/products/get/all/products?size=50&page=0&sort=brand,desc&name=Mouse 111 2",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"sellers",
+										"products",
+										"get",
+										"all",
+										"products"
+									],
+									"query": [
+										{
+											"key": "size",
+											"value": "50"
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "sort",
+											"value": "brand,desc"
+										},
+										{
+											"key": "name",
+											"value": "Mouse 111 2"
+										},
+										{
+											"key": "brand",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "categoryId",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "isCancellable",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "isReturnable",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Product",
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "User-Agent",
+										"value": "insomnia/11.4.0"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/api/sellers/products/remove/product/:productId",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"sellers",
+										"products",
+										"remove",
+										"product",
+										":productId"
+									],
+									"variable": [
+										{
+											"key": "productId",
+											"value": "7bc967b8-c2c7-4a60-a639-0d367bbb321b"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Product Variation",
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data"
+									},
+									{
+										"key": "accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "productId",
+											"value": "7bc967b8-c2c7-4a60-a639-0d367bbb321b"
+										},
+										{
+											"key": "primaryImage",
+											"type": "file",
+											"src": [],
+											"disabled": true
+										},
+										{
+											"key": "secondaryImages",
+											"type": "file",
+											"src": [],
+											"disabled": true
+										},
+										{
+											"key": "quantityAvailable",
+											"value": "5"
+										},
+										{
+											"key": "price",
+											"value": "10"
+										},
+										{
+											"key": "metadata[ROM]",
+											"value": "128GB",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "metadata[RAM]",
+											"value": "8GB",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "metadata[Color]",
+											"value": "Purple",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "metadata[Type]",
+											"value": "Wireless",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/sellers/products/add/product/variation",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"sellers",
+										"products",
+										"add",
+										"product",
+										"variation"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Product Variation",
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "User-Agent",
+										"value": "insomnia/11.4.0"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/api/sellers/products/get/product/variation/:variationId",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"sellers",
+										"products",
+										"get",
+										"product",
+										"variation",
+										":variationId"
+									],
+									"variable": [
+										{
+											"key": "variationId",
+											"value": "8ad95cf2-489c-405d-bbe5-ec57c5144858"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Product Variation",
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "User-Agent",
+										"value": "insomnia/11.4.0"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/api/sellers/products/get/all/product/variation/:productId?maxPrice=34000&sort=createdAt,desc",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"sellers",
+										"products",
+										"get",
+										"all",
+										"product",
+										"variation",
+										":productId"
+									],
+									"query": [
+										{
+											"key": "minPrice",
+											"value": "1000",
+											"disabled": true
+										},
+										{
+											"key": "maxPrice",
+											"value": "34000"
+										},
+										{
+											"key": "minQuantity",
+											"value": "1000",
+											"disabled": true
+										},
+										{
+											"key": "size",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "createdAt,desc"
+										}
+									],
+									"variable": [
+										{
+											"key": "productId",
+											"value": "7bc967b8-c2c7-4a60-a639-0d367bbb321b"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Product",
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/11.4.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Mouse 222 2\",\n  \"description\": \"Good jeans Must buy\",\n  \"isCancellable\": true,\n  \"isReturnable\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/sellers/products/change/product/:productId",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"sellers",
+										"products",
+										"change",
+										"product",
+										":productId"
+									],
+									"variable": [
+										{
+											"key": "productId",
+											"value": "d7a8f30a-6cc7-4c91-8ee9-03f0c67d16a8"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Product Variation",
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data"
+									},
+									{
+										"key": "accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "primaryImage",
+											"type": "file",
+											"src": "/home/nitin/Pictures/Screenshots/Screenshot from 2025-09-05 14-07-04.png"
+										},
+										{
+											"key": "secondaryImages",
+											"type": "file",
+											"src": "/home/nitin/Pictures/Screenshots/Screenshot from 2025-09-05 14-07-04.png"
+										},
+										{
+											"key": "secondaryImages",
+											"type": "file",
+											"src": "/home/nitin/Pictures/Screenshots/Screenshot from 2025-08-20 15-09-38.png"
+										},
+										{
+											"key": "quantityAvailable",
+											"value": "10",
+											"disabled": true
+										},
+										{
+											"key": "price",
+											"value": "499.99"
+										},
+										{
+											"key": "metadata[Size]",
+											"value": "L",
+											"disabled": true
+										},
+										{
+											"key": "metadata[Material]",
+											"value": "Casual",
+											"disabled": true
+										},
+										{
+											"key": "metadata[Color]",
+											"value": "Red",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/sellers/products/change/product/variation/:variationId",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"sellers",
+										"products",
+										"change",
+										"product",
+										"variation",
+										":variationId"
+									],
+									"variable": [
+										{
+											"key": "variationId",
+											"value": "236bfdc4-8648-4606-9637-1b41a150f4c6"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get Profile Seller",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.4.0"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/api/sellers/get/profile",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"sellers",
+								"get",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Seller Profile",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.4.0"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"companyName\": null,\n  \"firstName\": \"aaaaa\",\n  \"lastName\": \"aa\",\n  \"middleName\": null,\n  \"gst\": \"\",\n\t\"companyContact\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/sellers/update/profile",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"sellers",
+								"update",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Image",
+			"item": [
+				{
+					"name": "Upload Profile Image",
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.4.0"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/home/nitin/exercise/git_repo/Insomnia_2025-09-09.yaml"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/image/upload/profile/image",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"image",
+								"upload",
+								"profile",
+								"image"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Profile Image",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.4.0"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"value": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/image/get/profile/image/:userId",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"image",
+								"get",
+								"profile",
+								"image",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "e70b9ed7-1b43-4567-9830-dfaf83a6fa13"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product Variation Image",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/image/get/product/variation/image/:imageId",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"image",
+								"get",
+								"product",
+								"variation",
+								"image",
+								":imageId"
+							],
+							"variable": [
+								{
+									"key": "imageId",
+									"value": "8ad95cf2-489c-405d-bbe5-ec57c5144858_PRIMARY.png"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Variation Image",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}}/api/image/remove/product/variation/secondary/image/:imageId",
+							"host": [
+								"{{baseURL}}}"
+							],
+							"path": [
+								"api",
+								"image",
+								"remove",
+								"product",
+								"variation",
+								"secondary",
+								"image",
+								":imageId"
+							],
+							"variable": [
+								{
+									"key": "imageId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{ACCESS_TOKEN}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": ""
+		},
+		{
+			"key": "ACCESS_TOKEN",
+			"value": ""
+		},
+		{
+			"key": "adminAccessToken",
+			"value": ""
+		}
+	]
+}
